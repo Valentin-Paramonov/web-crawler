@@ -32,11 +32,4 @@ class SiteCheckController {
             .filter(Objects::nonNull)
             .forEach(checker::check);
     }
-
-    @Transactional
-    @RequestMapping(method = GET)
-    @ResponseBody
-    Iterable<CheckRecord> getResults() {
-        return StreamSupport.stream(checkRecords.findAll().spliterator(), false).peek(CheckRecord::getCheckResults).collect(toList());
-    }
 }
